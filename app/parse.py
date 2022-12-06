@@ -27,6 +27,7 @@ URL_MATE_BASE = "https://mate.academy/"
 def get_details_info_of_course(link: str, time_type: CourseType) -> tuple:
     detailed_page = requests.get(link).content
     detailed_page_soup = BeautifulSoup(detailed_page, "html.parser")
+
     detailed_info = detailed_page_soup.select("p.CourseModulesHeading_text__EdrEk")
     modules, topics = [name.text.split()[0] for name in detailed_info[:2]]
 
