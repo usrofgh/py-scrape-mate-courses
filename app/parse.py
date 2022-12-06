@@ -1,6 +1,6 @@
 import requests
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 from dataclasses import dataclass
 from enum import Enum
 from urllib.parse import urljoin
@@ -39,7 +39,7 @@ def get_details_info_of_course(link: str, time_type: CourseType) -> tuple:
     return modules, topics, duration
 
 
-def get_info_about_course(course_common_info: BeautifulSoup, time_type: CourseType) -> Course:
+def get_info_about_course(course_common_info: Tag, time_type: CourseType) -> Course:
 
     link_to_details_info = urljoin(URL_MATE_BASE,
                                    course_common_info.select_one("a.mb-16[href]")["href"])
