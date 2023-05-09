@@ -1,3 +1,4 @@
+import time
 from dataclasses import dataclass
 from enum import Enum
 
@@ -38,6 +39,7 @@ class Course:
 
 def get_single_course(course: Tag) -> Course:
     course_type = course.parent.parent.get("id")
+    print(course_type)
     if course_type == CourseType.FULL_TIME.value:
         course_type = CourseType.FULL_TIME
     else:
@@ -78,6 +80,7 @@ def get_single_course(course: Tag) -> Course:
 def get_all_courses() -> list[Course]:
     with set_up_chrome_driver() as driver:
         driver.get(URL)
+        time.sleep(0.5)
         soup = BeautifulSoup(driver.page_source, "html.parser")
         courses = soup.select(".CourseCard_cardContainer__7_4lK")
 
